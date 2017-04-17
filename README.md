@@ -11,7 +11,7 @@ former_url：https://www.zhihu.com/api/v4/members/li-chang-zhu-6/answers<br/>
 username:李昌竹
 
 两种可能性：
-- 代码真错了
+- 代码真错了(不过每个这个错误测试过，确实不是我代码的锅)
 - 该用户已被拉黑
 
 还有一种错误<br/>
