@@ -58,7 +58,6 @@ def changeFilename(filename):
     for c in filename:
         if c == '\\':
             filename = filename.replace(c,'/')
-    
     return filename
 
 '''
@@ -124,7 +123,7 @@ def getAllAnswer(userName,userUrl,url_token):
         'offset': offset,
         'sort_by': "created"
     }
-    path = "F:\\ZhihuUser\\"+userName
+    path = "F:\\Zhihu\\"+userName
 
     if(mkdir(path)):
         print('success')
@@ -237,12 +236,23 @@ def buildFile(slice,title,path,username):
         answer_url = getAnswerUrl(slice)
         
         sqldata=(username,filename,updated_time,answer_url)
+        '''
         files = open(filename,'wb') 
         content=slice['content'].encode('utf-8')
         soup = BeautifulSoup(content,'lxml')
         files.write(soup.text.encode('utf-8'))
         files.close()
+        '''
+        files = open(filename,'wt',encoding='utf-8') 
+        files.write(answer_url+'\n')
+        files.close()
         
+        files = open(filename,'at+',encoding='utf-8') 
+        content=slice['content']
+        soup = BeautifulSoup(content,'lxml')
+        files.write(soup.text)
+        files.close()
+
         arrlist.append(sqldata)
         
         global filesize
@@ -302,11 +312,7 @@ def deepSearch(username,deepth,former_url_token):
         try:
             dic = r.json()
         
-            isout = str(dic['paging']['is_end'])
-            if isout =='True':
-                break
-
-
+            
 
             offset =offset+1
             data['offset']=offset
@@ -351,18 +357,19 @@ if __name__ == '__main__':
      
      session = requests.Session()
      headers = getHeaders()
-     
-     html_doc = session.get('https://www.zhihu.com/org/lens-27/answers',headers=headers)
-     file = open('F:\\python\\spider\\tem.html','wb')
-     file.write(html_doc.text.encode('utf-8'))
-     file.close()
+
+     MAX_RETRIES = 100
+     adapter = requests.adapters.HTTPAdapter(max_retries=MAX_RETRIES)
+     session.mount('https://', adapter)
+     session.mount('http://', adapter)
+
      userName = '壹间的生活家'
      userUrl = 'https://www.zhihu.com/people/room1969/answers'
      url_token = 'room1969'
      users.add(url_token)
      getAllAnswer(userName,userUrl,url_token)
      '''
-     深度遍历最多20层， 最多15g文档
+     深度遍历最多3层， 最多2g文档
      '''
      deepth=1
      print("进入递归")
