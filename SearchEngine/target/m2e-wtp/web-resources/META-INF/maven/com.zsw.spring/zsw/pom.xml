@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.zsw.spring</groupId>
+	<artifactId>zsw</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>springmvc</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<spring.version>4.0.5.RELEASE</spring.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.7</java.version>
+		<jackson.version>2.3.1</jackson.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- JSon dependency -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+		<dependency>
+		   	<groupId>org.codehaus.jackson</groupId>
+		   	<artifactId>jackson-mapper-lgpl</artifactId>
+		   	<version>1.9.12</version>
+		</dependency>
+		<!-- JSon dependency -->
+		
+		<!-- mysql connection -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.14</version>
+		</dependency>
+		
+		<!-- Lucene -->
+		<dependency>
+		  <groupId>org.apache.lucene</groupId>
+		  <artifactId>lucene-core</artifactId>
+		  <version>5.5.3</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.apache.lucene</groupId>
+		  <artifactId>lucene-queryparser</artifactId>
+		  <version>5.5.3</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.apache.lucene</groupId>
+		  <artifactId>lucene-analyzers-smartcn</artifactId>
+		  <version>5.5.3</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.apache.lucene</groupId>
+		  <artifactId>lucene-analyzers-common</artifactId>
+		  <version>5.5.3</version>
+		</dependency>
+		
+		<!-- Redis -->
+		<dependency>
+		  <groupId>redis.clients</groupId>
+		  <artifactId>jedis</artifactId>
+		  <version>2.9.0</version>
+		</dependency>
+		
+		<!-- MyBatis -->
+		<dependency>
+		  <groupId>org.mybatis</groupId>
+		  <artifactId>mybatis-spring</artifactId>
+		  <version>1.2.5</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.mybatis</groupId>
+		  <artifactId>mybatis</artifactId>
+		  <version>3.2.5</version>
+		</dependency>
+	</dependencies>
+	
+    <build>
+		<finalName>SearchEngine</finalName>
+        <plugins>
+            <!-- compiler插件, 设定JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+
+            <!-- war打包插件, 设定war包名称不带版本号 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+	
+	
+</project>
