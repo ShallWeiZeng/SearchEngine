@@ -25,3 +25,11 @@ requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.zhihu.com', p
     session.mount('https://', adapter)
     session.mount('http://', adapter)
 ```
+## 后端部分<br/>
+
+先是把全部的结果都传回来，但是还没有进行分页<br/>
+需要安装好Redis
+## 待更新部分：<br/>
+- 将查询结果先放入Redis缓存中
+- 设计对结果分页的接口
+- ....
